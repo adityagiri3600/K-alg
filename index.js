@@ -98,8 +98,8 @@ function solveKmap(minterms) {
       }
     }
   }
-  const result = [];
-  for(const group of groups){
+  for(let i=0;i<groups.length;i++) {
+    group = groups[i];
     groupNumbers = group.value;
     const usedNumbers = new Set();
     for(const group of groups){
@@ -109,14 +109,16 @@ function solveKmap(minterms) {
         }
       }
     }
+    count = 0;
     for(const number of groupNumbers){
-      if(!usedNumbers.has(number)){
-        result.push(group);
-        break;
+      if(usedNumbers.has(number)){
+        count++;
       }
     }
+    if(count === groupNumbers.length){
+      groups.splice(i,1);
+    }
   }
-  groups = result;
    
   document.getElementById('groups').innerHTML = "Groups: "
   for(let i=0;i<groups.length;i++) {
