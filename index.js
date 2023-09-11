@@ -82,7 +82,10 @@ let minterms = new Set([]);
 function solveKmap(minterms) {
   
   let deleted_values = new Set();
+  let deleted_values2 = new Set();
   
+  mintermsClone = new Set([...minterms])
+
   expression = ""
   groups = []
   
@@ -92,11 +95,24 @@ function solveKmap(minterms) {
       let groupExpression = Object.keys(group)[0];
       let groupValues = group[groupExpression];
       if (condition(groupValues,minterms,deleted_values)) {
+        validGroups.push([group,[...groupValues].filter(num => minterms.has(num)).length]);
         groupValues.forEach(num => deleted_values.add(num));
         minterms = new Set([...minterms].filter(num => !deleted_values.has(num)));
-        groups.push({value: groupValues,key: groupExpression})
       }
     }
+    validGroups.sort((a, b) => a[1] - b[1]);
+    for(let i=0;i<validGroups.length;i++) {
+      let group = validGroups[i][0];
+      let groupExpression = Object.keys(group)[0];
+      let groupValues = group[groupExpression];
+      if(condition(groupValues,mintermsClone,deleted_values)) {
+        groupValues.forEach(num => deleted_values2.add(num));
+        mintermsClone = new Set([...mintermsClone].filter(num => !deleted_values2.has(num)));
+        groups.push({value: groupValues,key: groupExpression})
+      }
+      
+    }
+    
   }
   for(let i=0;i<groups.length;i++) {
     group = groups[i];
@@ -119,6 +135,8 @@ function solveKmap(minterms) {
       groups.splice(i,1);
     }
   }
+
+  groups.sort((a,b) => a.value.length - b.value.length)
    
   document.getElementById('groups').innerHTML = "Groups: "
   for(let i=0;i<groups.length;i++) {
