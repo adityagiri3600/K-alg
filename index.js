@@ -119,11 +119,6 @@ for(let i=0;i<cells.length;i++) {
   cells[i].innerHTML = `<span>${kmorder(i)}</span>`
   cells[i].addEventListener('click',function() {
 
-    cells[i].classList.add('anim')
-    setTimeout(() => {
-      cells[i].classList.remove('anim')
-    }, 1000);
-
     if(minterms.has(kmorder(i))) {
       minterms.delete(kmorder(i))
       this.style.backgroundColor = "grey"
