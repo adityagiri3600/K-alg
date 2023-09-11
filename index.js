@@ -98,6 +98,26 @@ function solveKmap(minterms) {
       }
     }
   }
+  const result = [];
+  for(const group of groups){
+    groupNumbers = group.value;
+    const usedNumbers = new Set();
+    for(const group of groups){
+      if(groupNumbers !== group.value){
+        for(const number of group.value){
+          usedNumbers.add(number);
+        }
+      }
+    }
+    for(const number of groupNumbers){
+      if(!usedNumbers.has(number)){
+        result.push(group);
+        break;
+      }
+    }
+  }
+  groups = result;
+   
   document.getElementById('groups').innerHTML = "Groups: "
   for(let i=0;i<groups.length;i++) {
     let groupValue = groups[i].value
