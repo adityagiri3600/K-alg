@@ -14,9 +14,10 @@ for (let num = 0; num < 16; num++) {
 let classified_groups = [[]];
 
 let letters = ['B', 'A', 'D', 'C'];
+let lettersComplement = ['B̅', 'A̅', 'D̅', 'C̅'];
 
 for (let i = 0; i < letters.length; i++) {
-  let zero_dict = { [`${letters[i]}'`]: num_zeros[i] };
+  let zero_dict = { [lettersComplement[i]]: num_zeros[i] };
   let one_dict = { [letters[i]]: num_ones[i] };
 
   classified_groups[0].push(zero_dict);
@@ -43,14 +44,14 @@ for (let _ = 0; _ < 3; _++) {
   classified_groups.push(newcl);
 }
 
-cubicTerms = [{ "A'C'D'": [0, 1] }, { "A'C'D": [4, 5] }, { "A'CD": [12, 13] }, { "A'CD'": [8, 9] },
-{ "AC'D'": [2, 3] }, { "AC'D": [6, 7] }, { "ACD": [14, 15] }, { "ACD'": [10, 11] },
-{ "B'C'D'": [0, 2] }, { "B'C'D": [8, 10] }, { "B'CD": [12, 14] }, { "B'CD'": [4, 6] },
-{ "BC'D'": [1, 3] }, { "BC'D": [9, 11] }, { "BCD": [13, 15] }, { "BCD'": [5, 7] },
-{ "A'B'D'": [0, 8] }, { "A'B'D": [4, 12] }, { "A'BD": [5, 13] }, { "A'BD'": [1, 9] },
-{ "AB'D'": [2, 10] }, { "AB'D": [6, 14] }, { "ABD": [7, 15] }, { "ABD'": [3, 11] },
-{ "A'B'C'": [0, 4] }, { "A'B'C": [12, 8] }, { "A'BC": [13, 9] }, { "A'BC'": [1, 5] },
-{ "AB'C'": [2, 6] }, { "AB'C": [14, 10] }, { "ABC": [11, 15] }, { "ABC'": [3, 7] }]
+cubicTerms = [{ "A̅C̅D̅": [0, 1] }, { "A̅C̅D": [4, 5] }, { "A̅CD": [12, 13] }, { "A̅CD̅": [8, 9] },
+{ "AC̅D̅": [2, 3] }, { "AC̅D": [6, 7] }, { "ACD": [14, 15] }, { "ACD̅": [10, 11] },
+{ "B̅C̅D̅": [0, 2] }, { "B̅C̅D": [8, 10] }, { "B̅CD": [12, 14] }, { "B̅CD̅": [4, 6] },
+{ "BC̅D̅": [1, 3] }, { "BC̅D": [9, 11] }, { "BCD": [13, 15] }, { "BCD̅": [5, 7] },
+{ "A̅B̅D̅": [0, 8] }, { "A̅B̅D": [4, 12] }, { "A̅BD": [5, 13] }, { "A̅BD̅": [1, 9] },
+{ "AB̅D̅": [2, 10] }, { "AB̅D": [6, 14] }, { "ABD": [7, 15] }, { "ABD̅": [3, 11] },
+{ "A̅B̅C̅": [0, 4] }, { "A̅B̅C": [12, 8] }, { "A̅BC": [13, 9] }, { "A̅BC̅": [1, 5] },
+{ "AB̅C̅": [2, 6] }, { "AB̅C": [14, 10] }, { "ABC": [11, 15] }, { "ABC̅": [3, 7] }]
 classified_groups[3] = classified_groups[2]
 classified_groups[2] = cubicTerms
 for (let i = 0; i < 4; i++) {
